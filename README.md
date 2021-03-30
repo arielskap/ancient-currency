@@ -4,11 +4,7 @@ Consulta de divisas
 
 ### Mejoras a realizar
 
-* Input para agregar más divisas
-
 * Diseño general
-
-* Actualizar divisas cada 15 segundos
 
 ### Pre-requisitos 📋
 

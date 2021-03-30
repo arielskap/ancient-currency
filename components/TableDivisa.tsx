@@ -1,7 +1,9 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { formatMoney } from "utils/formatMonet"
 import { IRates } from "interface/IDivisa"
 import { formatDate } from "utils/formatDate"
+import { fetchDivisa } from "utils/divisa"
+import { Button } from "./Button"
 
 interface Props {
 	tarifas: IRates[]
@@ -12,14 +14,32 @@ interface Props {
 
 const TableDivisa: React.FC<Props> = ( { tarifas, nombre, fecha, cantPorPagina } ) => {
 	const [position, setPosition] = useState( 1 )
+	const [tarifaState, setTarifaState] = useState( {
+		value: tarifas,
+		date: fecha
+	} )
 	const paginations = Math.ceil( tarifas.length / cantPorPagina )
 
 	const handleClickChangePagination = ( pagina: number ) => {
 		setPosition( pagina )
 	}
 
+	useEffect( () => {
+		setInterval( async () => {
+			const divisa = await fetchDivisa( nombre )
+
+			setTarifaState( { value: divisa.rates, date: divisa.date } )
+		}, 15000 )
+	}, [] )
+
+	const handleClickReCharge = async () => {
+		const divisa = await fetchDivisa( nombre )
+
+		setTarifaState( { value: divisa.rates, date: divisa.date } )
+	}
+
 	return (
-		<div className='px-6 mx-2 border border-blue-800'>
+		<div className='px-6 py-2 mx-2 border border-blue-800'>
 			<h2 className='text-center'>Moneda: {nombre}</h2>
 			<div className='flex justify-center border border-blue-600 rounded'>
 				<table className='table-auto'>
@@ -30,7 +50,7 @@ const TableDivisa: React.FC<Props> = ( { tarifas, nombre, fecha, cantPorPagina }
 						</tr>
 					</thead>
 					<tbody>
-						{tarifas.map( ( { name, value }, i ) => {
+						{tarifaState.value.map( ( { name, value }, i ) => {
 							if ( i < ( cantPorPagina * position ) && i >= ( ( cantPorPagina * position ) - cantPorPagina ) ) {
 								return (
 									<tr className='hover:bg-blue-100' key={`tr-${name}`}>
@@ -54,7 +74,10 @@ const TableDivisa: React.FC<Props> = ( { tarifas, nombre, fecha, cantPorPagina }
 					)
 				} )}
 			</div>
-			<div className='text-center'>Fecha: {formatDate( fecha )}</div>
+			<div className='text-center'>Fecha: {formatDate( tarifaState.date )}</div>
+			<div className='text-center'>
+				<Button action={handleClickReCharge}>Re Cargar</Button>
+			</div>
 		</div>
 	)
 }

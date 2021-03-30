@@ -25,9 +25,6 @@ plugins:
   - jsx-a11y
   - import
 rules:
-  arrow-body-style:
-    - error
-    - always
   arrow-parens:
     - error
     - always
@@ -133,8 +130,8 @@ rules:
     }
   react/no-access-state-in-setstate:
     - error
-  react/no-array-index-key:
-    - error
+  # react/no-array-index-key:
+  #   - error
   react/no-children-prop:
     - error
   react/no-danger:

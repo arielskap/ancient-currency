@@ -46,3 +46,15 @@ yarn build
 ```
 yarn start
 ```
+
+## Construido con 🛠️
+
+* [Node.js](https://nodejs.org/es/) - Entorno de ejecución
+* [Typescript](https://www.typescriptlang.org/) - Lenguaje de programación
+* [Yarn](https://yarnpkg.com/) - Manejador de dependencias
+* [React](https://es.reactjs.org/) - Framework de JavaScript
+* [Next.js](https://nextjs.org/) - Framework de React
+* [Tailwindcss](https://tailwindcss.com/) - CSS framework
+* [PostCSS](https://postcss.org/) - Preprocesador CSS
+
+❤️ 🛸 👩‍💻 🤖 🐥 ❤️

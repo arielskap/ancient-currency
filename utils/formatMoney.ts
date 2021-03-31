@@ -1,4 +1,4 @@
-export function formatMoney( amount: string | number, decimalCount = 2, decimal = `,`, thousands = `.` ): string {
+export function formatMoney( amount: string | number, decimalCount = 2, decimal = `,`, thousands = `.` ): string | undefined {
 	try {
 		decimalCount = Math.abs( decimalCount )
 		decimalCount = isNaN( decimalCount ) ? 2 : decimalCount

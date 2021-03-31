@@ -1,3 +1,3 @@
 export default {
-	titleTemplate: `%s | Next App`,
+	titleTemplate: `%s | Ancient Currency`,
 }

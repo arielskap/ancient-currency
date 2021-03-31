@@ -7,7 +7,6 @@ const fetchDivisa = async ( base: string ): Promise<IDivisa> => {
 		console.log( e )
 		return e
 	} ).then( ( result ) => {
-		// console.log( result )
 		return result
 	} )
 
